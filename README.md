@@ -100,7 +100,7 @@ Untuk Back-end :
 ![Locus 50](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/b8995a63-eb95-4129-a6d7-eee120029620)
 - Ini adalah hasil pengujian Tes Locust 500 User dengaan 50 Spawn Rate
 ![Locus 50 (500)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/82738be1-fb2c-481c-852d-a396d84332c2)
-Ini adalah hasil pengujian Tes Locust dengan membandingkan antara 500 user, 800 user dan 700 user 
+- Ini adalah hasil pengujian Tes Locust dengan membandingkan antara 500 user, 800 user dan 700 user 
 ![Locus 50 (700)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/f69f20e9-e5a2-4688-ae8e-1089f46095a4)
 Dimana pada pengujian untuk 800 user ada tingkat failure diatas 2% dan untuk yang 700 masih tetap 0% dan untuk 500 memliki tingkat failure 0% juga 
 
