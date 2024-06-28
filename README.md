@@ -1,6 +1,6 @@
 # Final Project Teknologi Komputasi Awan 
 
-## Kelompok C3 TKA(B)
+## Kelompok C3 TKA (C)
 
 **Anggota:**
 | Nama                     | NRP        |
