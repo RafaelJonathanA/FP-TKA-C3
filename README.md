@@ -77,6 +77,7 @@ Kemudian anda diminta untuk mendesain arsitektur _cloud_ yang sesuai dengan kebu
 3. Mengkonfigurasikan Backend dan Frontend dengan konfigurasi yang telah diberikan baik untuk Frontend maupun Backend.
    
 4. Lakukan konfigurasi loadbalancer pada DigitalOcean
+   
    ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/c2296ba1-a399-4581-9ff7-84b37f4883c7)
 
 - Disini port web aplikasi yang digunakan 5000, maka port 5000 tersebut akan dialihkan ke port 80 dari ip load balancer tersebut 
