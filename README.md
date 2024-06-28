@@ -68,10 +68,19 @@ Kemudian anda diminta untuk mendesain arsitektur _cloud_ yang sesuai dengan kebu
 
 
 ## III. Langkah-langkah Implementasi 
-1. Buat Backend dan Frontend menggunakan Droplet pada DigitalOcean, kita membuat sebanyak 3 droplets 
-2. Buat Database di DigitalOcean 
-3. Mengkonfigurasikan Backend dan Frontend dengan konfigurasi yang telah diberikan baik untuk Frontend maupun Backend. 
-4. Lakukan konfigurasi loadbalancer pada DigitalOcean 
+1. Buat Backend dan Frontend menggunakan Droplet pada DigitalOcean, kita membuat sebanyak 3 droplets
+
+   ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/f5518b62-4f66-485c-b163-012ce09e211e)
+
+2. Buat Database di DigitalOcean
+   
+3. Mengkonfigurasikan Backend dan Frontend dengan konfigurasi yang telah diberikan baik untuk Frontend maupun Backend.
+   
+4. Lakukan konfigurasi loadbalancer pada DigitalOcean
+
+![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/c2296ba1-a399-4581-9ff7-84b37f4883c7)
+
+- Disini port web aplikasi yang digunakan 5000, maka port 5000 tersebut akan dialihkan ke port 80 dari ip load balancer tersebut 
 
 Untuk Front-end : 
 - Menginstal apache dengan command **Sudo apt-get install apache2**
@@ -79,15 +88,22 @@ Untuk Front-end :
 - lalu restart apache2
 
 Untuk Back-end :
-- Mengintal python3 dengan command **sudo apt-get install python3** 
+- Mengintal python3 dengan command **sudo apt-get install python3** dan **sudo apt-get install python3-venv**
+- Membuat lingkungan kebutuhan virtual dengan **python3 -m venv venv**
+- Aktivasi lingkungan tersebut dengan **source venv/bin/activate**
 - Install semua yang dibutuhkan dalam menjalankan konfigurasi pada back-end 
     - sudo apt-get install python3-pip 
     - pip install flask
     - pip install flask_cors
     - pip install textblob
     - pip install pymongo
-- Konfigurasikan sentiment_analysis.py 
-5. Buka IP front-end untuk memastikan bahwa web server dapat diakses 
+    - pip install gunicorn
+- Konfigurasikan sentiment_analysis.py
+- Nyalakan menggunakan command **gunicorn --workers 3 -bind 0.0.0.0:5000 --daemon sentiment_analysis:app** agar dapat berjalan meskipun terminal dimatikan
+  
+  ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/c9d6a476-fa0f-4ab8-ac23-b0f2baaaa767)
+
+5. Buka IP back-end pada **http://[ip-back-end]:5000/history** untuk memastikan bahwa web server dapat diakses
 6. Lalu lakukan pengujian menggunakan locust pada komputer lain dan menjalankan locusfile.py dengan command **locust -f locustfile.py --host http://[IP LoadBalancer DigitalOcean]**
 
 ## IV. Hasil Pengujian endpoint 
