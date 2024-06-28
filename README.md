@@ -18,6 +18,9 @@ Pada suatu saat anda mendapatkan _project_ untuk men-_deploy_ sebuah aplikasi **
 
 ### Endpoints:
 **1. Analyze Text**
+
+![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/4bb3d4a7-e956-40e5-8759-939355c66437)
+
   - **Endpoint:** POST `/analyze`
   - **Description:** This endpoint accepts a text input and returns the sentiment score of the text.
   - **Request:**
@@ -89,9 +92,18 @@ Untuk Front-end :
 
 Untuk Back-end :
 - Mengintal python3 dengan command **sudo apt-get install python3** dan **sudo apt-get install python3-venv**
+
+  ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/555f9862-eb6a-4a84-bf42-9aeec25b4e5a)
+
 - Membuat lingkungan kebutuhan virtual dengan **python3 -m venv venv**
 - Aktivasi lingkungan tersebut dengan **source venv/bin/activate**
-- Install semua yang dibutuhkan dalam menjalankan konfigurasi pada back-end 
+
+  ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/abc41595-6263-4e87-8838-a9bec424fd15)
+
+- Install semua yang dibutuhkan dalam menjalankan konfigurasi pada back-end
+
+  ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/3a1799d9-818d-4ac5-9c16-b4c7c480f807)
+
     - sudo apt-get install python3-pip 
     - pip install flask
     - pip install flask_cors
@@ -103,8 +115,11 @@ Untuk Back-end :
   
   ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/c9d6a476-fa0f-4ab8-ac23-b0f2baaaa767)
 
-5. Buka IP back-end pada **http://[ip-back-end]:5000/history** untuk memastikan bahwa web server dapat diakses
-6. Lalu lakukan pengujian menggunakan locust pada komputer lain dan menjalankan locusfile.py dengan command **locust -f locustfile.py --host http://[IP LoadBalancer DigitalOcean]**
+5. Buka IP back-end pada **http://[ip-load-balancer]:5000/history** untuk memastikan bahwa web server dapat diakses
+
+   ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/168651852/e49c0393-e702-4c61-ac62-ab316c0c9b3c)
+
+7. Lalu lakukan pengujian menggunakan locust pada komputer lain dan menjalankan locusfile.py dengan command **locust -f locustfile.py --host http://[IP LoadBalancer DigitalOcean]**
 
 ## IV. Hasil Pengujian endpoint 
 - Untuk pengujian get/analyze menggunakan webnya 
