@@ -1,4 +1,4 @@
-# Final Project TKA 
+# Final Project Teknologi Komputasi Awan 
 
 ## Kelompok C3 TKA(B)
 
@@ -12,9 +12,9 @@
 | Muhammad Hildan Adiwena  | 5027221077 |
 
 ## I. Introduction
-Anda adalah seorang lulusan Teknologi Informasi, sebagai ahli IT, salah satu kemampuan yang harus dimiliki adalah Keampuan merancang, membangun, mengelola aplikasi berbasis komputer menggunakan layanan awan untuk memenuhi kebutuhan organisasi.
+Anda adalah seorang lulusan Teknologi Informasi, sebagai ahli IT, salah satu kemampuan yang harus dimiliki adalah kemampuan merancang, membangun, mengelola aplikasi berbasis komputer menggunakan layanan awan untuk memenuhi kebutuhan organisasi.
 
-Pada suatu saat anda mendapatkan project untuk mendeploy sebuah aplikasi Sentiment Analysis dengan komponen Backend menggunakan python: sentiment-analysis.py dengan spesifikasi sebagai berikut 
+Pada suatu saat anda mendapatkan _project_ untuk men-_deploy_ sebuah aplikasi **Sentiment Analysis** dengan komponen Backend menggunakan python: sentiment-analysis.py dengan spesifikasi sebagai berikut 
 
 ### Endpoints:
 **1. Analyze Text**
@@ -50,7 +50,7 @@ Pada suatu saat anda mendapatkan project untuk mendeploy sebuah aplikasi Sentime
 Kemudian juga disediakan sebuah Frontend sederhana menggunakan index.html dan styles.css dengan tampilan antarmuka sebagai berikut: 
 ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/54bfcb8c-8d63-4c59-986a-f73d09bda5cf)
 
-Kemudian anda diminta untuk mendesain arsitektur cloud yang sesuai dengan kebutuhan aplikasi tersebut. Apabila dana maksimal yang diberikan adalah 1 juta rupiah per bulan (65 US$) konfigurasi cloud terbaik seperti apa yang bisa dibuat?
+Kemudian anda diminta untuk mendesain arsitektur _cloud_ yang sesuai dengan kebutuhan aplikasi tersebut. Apabila dana maksimal yang diberikan adalah 1 juta rupiah per bulan (65 US$), konfigurasi _cloud_ terbaik seperti apa yang bisa dibuat?
 
 ## II. Rancangan Arsitektur Serta Harganya 
 ![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/ce60838f-7a99-4433-a38c-4b7e9eb25d81)
@@ -74,7 +74,7 @@ Kemudian anda diminta untuk mendesain arsitektur cloud yang sesuai dengan kebutu
 4. Lakukan konfigurasi loadbalancer pada DigitalOcean 
 
 Untuk Front-end : 
--  Menginstal apache dengan command **Sudo apt-get install apache2**
+- Menginstal apache dengan command **Sudo apt-get install apache2**
 - Konfigurasikan untuk front-end index.html dan styles.css 
 - lalu restart apache2
 
@@ -131,6 +131,6 @@ Bila kita lihat tidak terjadi fail pada percobaan ini dengan peak currencynya ad
 ## VI. Kesimpulan dan Saran 
 Kesimpulan dengan menggunakan 3 VM satu untuk front-end dan dua untuk back-end dan disambungkan dengan loadbalancer lalu disambungkan kembali dengan database maka akan bisa bekerja dengan cukup baik dengan melihat puncak dari RPS(Request per second) yang bisa mencapai 360 an saat test locust dengan user 1500 dan dengan spawn rate 200. 
 
-Dari revisi kemarin yang dilakukan ada beberapa hal penting yaitu dengan menggunakan load balancer maka akan memungkinkan web untuk menanggung beban yang lebih banyak, dibandingkan hanya dengan menggunakan 1 VM dengan spesifikasi tinggi sebagai back-end lebih baik menggunakan 3 VM dengan spesifikasi rendah sehingga masing-masing back-end dapat membagi tugas menjadi lebih baik karena memang corenya lebih banyak 
+Dari revisi kemarin yang dilakukan ada beberapa hal penting yaitu dengan menggunakan load balancer maka akan memungkinkan web untuk menanggung beban yang lebih banyak, dibandingkan hanya dengan menggunakan 1 VM dengan spesifikasi tinggi sebagai back-end lebih baik menggunakan 3 VM dengan spesifikasi rendah sehingga masing-masing back-end dapat membagi tugas menjadi lebih baik karena memang _core_nya lebih banyak 
 
-Saran dari kelompok kami adalah saat pengujian locust ada baiknya bila server direstart terlebih dahulu bila sudah melakukan 5 pengujian karena hal ini bisa mempengaruhi hasil dari pengetesan locust dan juga baikknya dari rendah terlebih dahulu pengujiannya baru setelah itu naik secara bertahap 
+Saran dari kelompok kami adalah saat pengujian locust ada baiknya bila **server direstart terlebih dahulu** bila sudah melakukan 5 pengujian karena hal ini bisa mempengaruhi hasil dari pengetesan locust dan juga baiknya dari rendah terlebih dahulu pengujiannya baru setelah itu naik secara bertahap.
