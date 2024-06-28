@@ -59,10 +59,12 @@ Kemudian anda diminta untuk mendesain arsitektur cloud yang sesuai dengan kebutu
 
 | No. | Name         | Specifications                                                                      | Work Load            | Price |
 |-----|--------------|-------------------------------------------------------------------------------------|----------------------|-------|
-| 1   | worker1      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker      | $7    |
-| 2   | worker2      | 4 GB Memory / 2 Intel vCPUs / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker   | $32    |
-| 3   | mongodb      | 1 GB RAM / 1 vCPU / 15 GB Disk NVME SSD / Primary only / SGP1 - MongoDB             | Database Server      | $15   |
-|**Total**     |     |        |        | **$54**|
+| 1   | worker1      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Front-end Worker      | $7    |
+| 2   | worker2      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker   | $7    |
+| 3   | worker3      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker   | $7    |
+| 4   | loadbalancer  | 20K Simultaneous Connection / 20K Request per Second / 50 SSL Connection per Second          | Load Balancer      | $24   |
+| 5   | mongodb      | 1 GB RAM / 1 vCPU / 15 GB Disk NVME SSD / Primary only / SGP1 - MongoDB             | Database Server      | $15   |
+|**Total**     |     |        |        | **$60**|
 
 
 ## III. Langkah-langkah Implementasi 
@@ -83,8 +85,9 @@ Untuk Back-end :
     - pip install flask_cors
     - pip install textblob
     - pip install pymongo
-- Konfigurasikan sentiment_analysis.py 
-4. Buka IP front-end untuk memastikan bahwa web server dapat diakses 
+- Konfigurasikan sentiment_analysis.py
+- Nyalakan menggunakan command gunicorn --workers 3 -bind 0.0.0.0:5000 --daemon sentiment_analysis:app agar dapat berjalan meskipun terminal dimatikan
+4. Buka IP front-end untuk memastikan bahwa web server dapat diakses
 5. Lalu lakukan pengujian menggunakan locust pada komputer lain dan menjalankan locusfile.py dengan command **locust -f locustfile.py --host http://[IP backend yang ada pada DigitalOcean]:5000**
 
 ## IV. Hasil Pengujian endpoint 
