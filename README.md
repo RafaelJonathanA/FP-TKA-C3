@@ -53,24 +53,25 @@ Kemudian juga disediakan sebuah Frontend sederhana menggunakan index.html dan st
 Kemudian anda diminta untuk mendesain arsitektur cloud yang sesuai dengan kebutuhan aplikasi tersebut. Apabila dana maksimal yang diberikan adalah 1 juta rupiah per bulan (65 US$) konfigurasi cloud terbaik seperti apa yang bisa dibuat?
 
 ## II. Rancangan Arsitektur Serta Harganya 
-![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/2d2a4ab8-4d3e-4ce4-a213-3301154a9706)
+![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/ce60838f-7a99-4433-a38c-4b7e9eb25d81)
 
 ### Dengan Spesifikasi Harga : 
 
 | No. | Name         | Specifications                                                                      | Work Load            | Price |
 |-----|--------------|-------------------------------------------------------------------------------------|----------------------|-------|
-| 1   | worker1      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Front-end Worker      | $7    |
-| 2   | worker2      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker   | $7    |
-| 3   | worker3      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker   | $7    |
-| 4   | loadbalancer  | 20K Simultaneous Connection / 20K Request per Second / 50 SSL Connection per Second          | Load Balancer      | $24   |
+| 1   | worker1      | 1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker + Front-End Worker     | $7    |
+| 2   | worker2      |  1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker      | $7    |
+| 3   | worker3     |  1 GB Memory / 1 AMD vCPU / 25 GB Disk NVME SSD / 1TB Transfer / SGP1 - Ubuntu 22.04 (LTS) x64 | Back-End Worker      | $7    |
+| 4   | loadbalancer     | 2 node / 20K Simultaneous Connection / 20K Request per Second / 50 SSL Connection per Second | Database Server      | $24   |
 | 5   | mongodb      | 1 GB RAM / 1 vCPU / 15 GB Disk NVME SSD / Primary only / SGP1 - MongoDB             | Database Server      | $15   |
 |**Total**     |     |        |        | **$60**|
 
 
 ## III. Langkah-langkah Implementasi 
-1. Buat Backend dan Frontend menggunakan Droplet pada DigitalOcean 
+1. Buat Backend dan Frontend menggunakan Droplet pada DigitalOcean, kita membuat sebanyak 3 droplets 
 2. Buat Database di DigitalOcean 
 3. Mengkonfigurasikan Backend dan Frontend dengan konfigurasi yang telah diberikan baik untuk Frontend maupun Backend. 
+4. Lakukan konfigurasi loadbalancer pada DigitalOcean 
 
 Untuk Front-end : 
 -  Menginstal apache dengan command **Sudo apt-get install apache2**
@@ -85,10 +86,9 @@ Untuk Back-end :
     - pip install flask_cors
     - pip install textblob
     - pip install pymongo
-- Konfigurasikan sentiment_analysis.py
-- Nyalakan menggunakan command gunicorn --workers 3 -bind 0.0.0.0:5000 --daemon sentiment_analysis:app agar dapat berjalan meskipun terminal dimatikan
-4. Buka IP front-end untuk memastikan bahwa web server dapat diakses
-5. Lalu lakukan pengujian menggunakan locust pada komputer lain dan menjalankan locusfile.py dengan command **locust -f locustfile.py --host http://[IP backend yang ada pada DigitalOcean]:5000**
+- Konfigurasikan sentiment_analysis.py 
+5. Buka IP front-end untuk memastikan bahwa web server dapat diakses 
+6. Lalu lakukan pengujian menggunakan locust pada komputer lain dan menjalankan locusfile.py dengan command **locust -f locustfile.py --host http://[IP LoadBalancer DigitalOcean]**
 
 ## IV. Hasil Pengujian endpoint 
 - Untuk pengujian get/analyze menggunakan webnya 
@@ -98,37 +98,39 @@ Untuk Back-end :
 ![image](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/1412b1fe-4aea-4d05-8740-d20e565d4d66)
 
 ## V. Hasil dan Analisis Pengujian Locust 
-### Test Locust Spawn Rate 50
-- Ini adalah Grafik untuk Tes Locust 100 User dengan 50 Spawn Rate 
-![Locus 50](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/b8995a63-eb95-4129-a6d7-eee120029620)
-- Ini adalah hasil pengujian Tes Locust 500 User dengaan 50 Spawn Rate
-![Locus 50 (500)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/82738be1-fb2c-481c-852d-a396d84332c2)
-- Ini adalah hasil pengujian Tes Locust dengan membandingkan antara 500 user, 800 user dan 700 user 
-![Locus 50 (700)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/f69f20e9-e5a2-4688-ae8e-1089f46095a4)
-Dimana pada pengujian untuk 800 user ada tingkat failure diatas 2% dan untuk yang 700 masih tetap 0% dan untuk 500 memliki tingkat failure 0% juga 
+### Maksimal RPS 
+Dengan **number off user** : 1500, **Ramp UP** : 200 dan **Waktu** : 15 Sekon 
 
-### Test Locust dengan spawn rate 100
-- Ini adalah Grafik untuk Tes Locust 100 User dengan 100 Spawn Rate 
-![Locus 100](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/d668a8f9-fd93-48c5-8c16-90287a0f3888) 
-- Ini adalah Grafik untuk Tes Locust 500 User dan 400 user dengan 100 Spawn Rate 
-![Locust 100(400)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/0aecd082-c300-41b6-b062-d78794720342)
-Dimana untuk pengujian untuk 500 user terdapat failure sebanyak 3% dan pada 400 user masih tetap 0% 
+![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/707ea657-ffb2-42de-bedb-06a89d5ccc21)
 
-### Test Locust dengan spawn rate 200
-- Ini adalah Grafik untuk Tes Locust 100 User dengan 200 Spawn Rate 
-![Locus 200](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/16177525-9b83-4e35-a46e-2e14224b0e68)
-- Ini adalah Grafik untuk Tes Locust 400 dan 500 User dengan 200 Spawn Rate
-![Locust 200(400-500)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/c993c775-4907-4775-8fac-96debe6bf35e)
-Dimana untuk pengujian 400 user memiliki failure 0% namun di pengujian 500 user memiliki failure 1% 
+Untuk maksimal RPS ada di angka 368 sedangkan rata-ratanya ada di angka 247.8 sehingga bisa dihitung dengan cara 247/200 X 30 = 37 
 
-### Test Locust dengan spawn rate 500 
-- Ini adalah Grafik untuk Tes Locust 100 User dengan 500 Spawn Rate 
-![Locus 500](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/fa9748c4-b84a-40a3-ae6b-2ac501a759e9)
-- Ini adalah Grafik untuk Tes Locust 400 dan 300 User dengan 500 Spawn Rate 
-![Locust500(300)](https://github.com/RafaelJonathanA/FP-TKA-C3/assets/150375098/de652363-830b-47d2-aac8-f4ef8f743012)
-Dimana untuk pengujian 400 user memiliki tingkat failure 1% sedangkan untuk pengujian 300 user memiliki tingkat  failure 0% 
+Seperti yang kita lihat pada grafik bahwa terjadi lonjakan response time pada akhir pengujian yang menandakan bahwa arsitektur mualai kesulitan menangani 1500 user dan RPS juganya mulai menurun yang tadinya pada angka 280 menjadi 240 namun hal ini menjadi lebih baik dibandingkan pada arsitektur sebelumnya yang menggunakan 1 VM untuk front-end dan 1 VM untuk back-end dan satu database yang maksimum RPSnya hanya 50 saja dan rata-ratanya hanya 40 sehingga dengan menambahkan load balancer RPS menjadi lebih baik 
+
+### Mencari Peak of Currency 
+#### 50 Spawn Rate (60s)
+![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/e52e0cb0-4afd-46e8-9ce8-7b9d3d5e5f94)
+
+Bila kita lihat terjadi fail saat user mencapai 2500 sehingga bisa disimpulkan peak currency untuk 50 spawn rate adalah 2500
+
+#### 100 Spawn Rate (60s)
+![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/013f1331-f177-4837-b1bc-896f959f4eb1)
+
+Bila kita lihat tidak terjadi fail pada percobaan ini dengan peak of currencynya adalah 1800 namun pada percobaan sebelumnya di angka 1900 mengalami fail 1% sehingga dapat disimpulkan peak od curencynya adalah 1800 
+
+#### 200 Spawn Rate (60s)
+![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/59c8c69d-c2d9-454c-8700-ef875f4a4a78)
+
+Bila kita lihat tidak terjadi fail pada percobaan ini dengan peak currencynya adalah 1800 namun pada percobaan sebelumnya di angka 2000 mengalami fail 3% sehingga dapat disimpulkan peak of currencynya adalah 1800 
+
+#### 500 Spawn Rate (60s)
+![image](https://github.com/RafaelJonathanA/Sisop-FP-2024-MH-IT26/assets/150375098/d3d12096-6484-4ecd-b46b-d2459647c2c4)
+
+Bila kita lihat tidak terjadi fail pada percobaan ini dengan peak currencynya adalah 1700 namun pada percobaan sebelumnya di angka 1800 mengalami fail 6% sehingga dapat disimpulkan peak of currencynya adalah 1700 
 
 ## VI. Kesimpulan dan Saran 
-Kesimpulan dengan menggunakan 2 VM satu untuk front-end dan satu untuk back-end dan disambungkan dengan database maka akan bisa bekerja dengan cukup baik dengan melihat puncak dari RPS(Request per second) yang bisa mencapai 150 an saat test locust dengan user 300 dan dengan spawn rate 500. 
+Kesimpulan dengan menggunakan 3 VM satu untuk front-end dan dua untuk back-end dan disambungkan dengan loadbalancer lalu disambungkan kembali dengan database maka akan bisa bekerja dengan cukup baik dengan melihat puncak dari RPS(Request per second) yang bisa mencapai 360 an saat test locust dengan user 1500 dan dengan spawn rate 200. 
+
+Dari revisi kemarin yang dilakukan ada beberapa hal penting yaitu dengan menggunakan load balancer maka akan memungkinkan web untuk menanggung beban yang lebih banyak, dibandingkan hanya dengan menggunakan 1 VM dengan spesifikasi tinggi sebagai back-end lebih baik menggunakan 3 VM dengan spesifikasi rendah sehingga masing-masing back-end dapat membagi tugas menjadi lebih baik karena memang corenya lebih banyak 
 
 Saran dari kelompok kami adalah saat pengujian locust ada baiknya bila server direstart terlebih dahulu bila sudah melakukan 5 pengujian karena hal ini bisa mempengaruhi hasil dari pengetesan locust dan juga baikknya dari rendah terlebih dahulu pengujiannya baru setelah itu naik secara bertahap 
