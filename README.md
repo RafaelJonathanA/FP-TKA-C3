@@ -11,6 +11,8 @@
 | Elgracito Iryanda Endia  | 5027221057 |
 | Muhammad Hildan Adiwena  | 5027221077 |
 
+Link Demo : https://youtu.be/JGuRARDEdYs?si=UAxQA8Y6aKQcnuVn
+
 ## I. Introduction
 Anda adalah seorang lulusan Teknologi Informasi, sebagai ahli IT, salah satu kemampuan yang harus dimiliki adalah kemampuan merancang, membangun, mengelola aplikasi berbasis komputer menggunakan layanan awan untuk memenuhi kebutuhan organisasi.
 
@@ -165,3 +167,5 @@ Kesimpulan dengan menggunakan 3 VM satu untuk front-end dan dua untuk back-end d
 Dari revisi kemarin yang dilakukan ada beberapa hal penting yaitu dengan menggunakan load balancer maka akan memungkinkan web untuk menanggung beban yang lebih banyak, dibandingkan hanya dengan menggunakan 1 VM dengan spesifikasi tinggi sebagai back-end lebih baik menggunakan 3 VM dengan spesifikasi rendah sehingga masing-masing back-end dapat membagi tugas menjadi lebih baik karena memang _core_nya lebih banyak 
 
 Saran dari kelompok kami adalah saat pengujian locust ada baiknya bila **server direstart terlebih dahulu** bila sudah melakukan 5 pengujian karena hal ini bisa mempengaruhi hasil dari pengetesan locust dan juga baiknya dari rendah terlebih dahulu pengujiannya baru setelah itu naik secara bertahap.
+
+Link Demo: https://youtu.be/JGuRARDEdYs?si=UAxQA8Y6aKQcnuVn
